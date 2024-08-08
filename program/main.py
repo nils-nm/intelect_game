@@ -2,7 +2,7 @@ import pygame
 import pygame as pg
 
 w, h = 20, 20
-tile = 20
+tile = 6
 clock = pg.time.Clock()
 
 screen = pg.display.set_mode((w * tile, h * tile))
@@ -26,7 +26,7 @@ map_lvl2 = [
     [1, 0, 0, 0, 0, 1, ],
     [1, 0, 0, 0, 0, 1, ],
     [1, 0, 0, 0, 0, 1, ],
-    [1, 0, 0, 0, 1, 1, ],
+    [1, 0, 0, 0, 0, 1, ],
     [1, 1, 1, 1, 1, 1, ],
 ]
 
@@ -37,14 +37,13 @@ def Map(map):
     y = -h
     for i in map:
         y += h
+        x = -w
         for j in i:
             x += w
 
             if j == 1:
 
                 pg.draw.rect(screen, (255, 0, 0), (x, y, w, h), 1)
-            if i[j] == i[-1]:
-                x = -w
 
 
 while run:
@@ -56,13 +55,14 @@ while run:
                 run = False
 
             if event.key == pygame.K_1:
+                screen.fill((0, 0, 0))
                 Map(map_lvl1)
 
             if event.key == pygame.K_2:
+                screen.fill((0, 0, 0))
                 Map(map_lvl2)
 
-    # pg.draw.rect(screen, (0, 0, 255), (0, 0, 100, 100))
-    Map(map_lvl1)
-    pg.display.update()
+
+    pg.display.flip()
     clock.tick(60)
 pg.quit()
