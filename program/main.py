@@ -21,6 +21,16 @@ map_lvl1 = [
     [0, 0, 0, 1, 0, 0, ],
 ]
 
+map_lvl2 = [
+    [1, 1, 1, 1, 1, 1, ],
+    [1, 0, 0, 0, 0, 1, ],
+    [1, 0, 0, 0, 0, 1, ],
+    [1, 0, 0, 0, 0, 1, ],
+    [1, 0, 0, 0, 1, 1, ],
+    [1, 1, 1, 1, 1, 1, ],
+]
+
+
 
 def Map(map):
     x = -w
@@ -29,7 +39,7 @@ def Map(map):
         y += h
         for j in i:
             x += w
-            
+
             if j == 1:
 
                 pg.draw.rect(screen, (255, 0, 0), (x, y, w, h), 1)
@@ -41,6 +51,16 @@ while run:
     for event in pg.event.get():
         if event.type == pygame.QUIT:
             run = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_q:
+                run = False
+
+            if event.key == pygame.K_1:
+                Map(map_lvl1)
+
+            if event.key == pygame.K_2:
+                Map(map_lvl2)
+
     # pg.draw.rect(screen, (0, 0, 255), (0, 0, 100, 100))
     Map(map_lvl1)
     pg.display.update()
